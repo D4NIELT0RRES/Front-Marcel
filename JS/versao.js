@@ -1,29 +1,31 @@
 'use strict'
 
-async function getPlataforma() {
-    const url = `http://localhost:8080/v1/controle-jogos/plataforma`
+async function getVersao() {
+    const url = `http://localhost:8080/v1/controle-jogos/versao`
+    const response = await fetch(url)
+    const data = await response.json()
+    console.log(data)
+}
+
+async function getVersaoPorId(id) {
+    const url = `http://localhost:8080/v1/controle-jogos/versao/${id}`
     const response = await fetch(url)
     const data = await response.json()
     console.log(data)
     return data
 }
 
-async function getPlataformaPorId(id) {
-    const url = `http://localhost:8080/v1/controle-jogos/plataforma/${id}`
-    const response = await fetch(url)
-    const data = await response.json()
-    console.log(data)
-    return data
-}
-
-async function postPlataforma() {
-    const url = `http://localhost:8080/v1/controle-jogos/plataforma`
-
+async function postVersao() {
+    const url = `http://localhost:8080/v1/controle-jogos/versao`
     const data = {
-        "nome": "Nintendo"
+
+        "nome_versao": "Minecraft: Mundo Aberto",
+        "numero_versao": "4.30.000",
+        "data_versao": "2025-04-24",
+        "tamanho": "150.0 GB"
     }
 
-    const options = {
+    const options = { 
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
@@ -37,22 +39,22 @@ async function postPlataforma() {
     return response.ok
 }
 
-async function putPlataforma(id,plataforma) {
-    const url = `http://localhost:8080/v1/controle-jogos/plataforma/${id}`
+async function putVersao(id, versao) {
+    const url = `http://localhost:8080/v1/controle-jogos/versao/${id}`
 
     const options = {
         method: 'PUT',
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(plataforma)
+        body: JSON.stringify(versao)
     }
     const response = await fetch(url,options)
     return response.ok
 }
 
-async function deletePlataforma(id) {
-    const url = `http://localhost:8080/v1/controle-jogos/plataforma/${id}` 
+async function deleteVersao(id) {
+    const url = `http://localhost:8080/v1/controle-jogos/versao/${id}`
 
     const options = {
         method: 'DELETE'
@@ -61,8 +63,8 @@ async function deletePlataforma(id) {
     return response.ok
 }
 
-//getPlataforma()
-//getPlataformaPorId('1')
-//postPlataforma()
-//putPlataforma('1')
-//deleteGenero('3')
+//getVersao()
+//getVersaoPorId('3')
+//postVersao()
+//putVersao('1')
+//deleteVersao('3')
