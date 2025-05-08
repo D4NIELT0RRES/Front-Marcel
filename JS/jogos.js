@@ -1,12 +1,13 @@
 'use strict'
 
-async function getJogos() {
+export async function getJogos() {
     const url = `http://localhost:3030/v1/controle-jogos/jogo`
     const response = await fetch(url)
     const data = await response.json()
+    return data
 }
 
-async function getJogo(id) {
+export async function getJogoPorId(id) {
     const url = `http://localhost:3030/v1/controle-jogos/jogo/${id}`
     const response = await fetch(url)
     const data = await response.json()
